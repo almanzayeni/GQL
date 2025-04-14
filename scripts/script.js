@@ -278,6 +278,18 @@ document.getElementById("searchButton").addEventListener("click", function () {
     alert("Sorry, no relevant page found for your search.");
 });
 
+//Emoji clicking 
+document.querySelectorAll('.emoji-container p').forEach(emoji => {
+    emoji.addEventListener('click', () => {
+        // Remove 'selected' from all emojis in the container
+        emoji.parentElement.querySelectorAll('p').forEach(e => e.classList.remove('selected'));
+
+        // Add 'selected' to clicked emoji
+        emoji.classList.add('selected');
+    });
+});
+
+
 
 
 
