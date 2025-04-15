@@ -283,21 +283,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Search input
-document.getElementById("searchButton").addEventListener("click", function () {
-    const query = document.getElementById("searchInput").value.toLowerCase();
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
 
-    if (!query.trim()) {
+function performSearch() {
+    const query = searchInput.value.toLowerCase().trim();
+
+    if (!query) {
         alert("Please enter a search term.");
         return;
     }
 
     const keywordMap = {
-        "tips.html": ["tip", "tips", "advice", "games", "activities", "video"],
+        "tips.html": ["tip", "tips", "advice", "games", "activities", "video", "quote", "playlist"],
         "classes.html": ["class", "classes", "event", "events", "date", "calendar", "register"],
-        "resources.html": ["service", "remedy", "remedies", "recipe", "lookup", "services near me"],
-        "help.html": ["help", "how", "when", "where", "question", "what", "assistance"],
+        "resources.html": ["service", "remedy", "remedies", "recipe", "lookup", "services near me", "zip", "health"],
+        "help.html": ["help", "how", "when", "where", "question", "what", "assistance", "faqs", "faq"],
         "discussions.html": ["discussion", "discussions", "blog", "comment", "comments", "read blog", "share"],
-        "contact.html": ["more help", "contact", "phone", "address", "hours"],
+        "contact.html": ["more help", "contact", "phone", "address", "hours", "location"],
+        "index.html": ["home", "index", "trending", "news", "doctor", "laugh", "learn", "welcome"],
         "signin.html": ["sign up", "sign in", "password", "log in"]
     };
 
@@ -311,7 +315,17 @@ document.getElementById("searchButton").addEventListener("click", function () {
     }
 
     alert("Sorry, no relevant page found for your search.");
+}
+
+searchButton.addEventListener("click", performSearch);
+
+searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault(); // Prevent form submission or default behavior
+        performSearch();
+    }
 });
+
 
 //Emoji clicking 
 document.querySelectorAll('.emoji-container p').forEach(emoji => {
