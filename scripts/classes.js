@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Set event date (YYYY, MM-1, DD, HH, MM)
-    const eventDate = new Date(2025, 5, 5, 20, 09).getTime();
+    const eventDate = new Date(2025, 5, 5, 20, 9).getTime();
     startCountdown(eventDate);
 });
 //Calendar for events
@@ -32,7 +32,7 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
-const events = ["2025-04-06", "2025-04-13", "2025-04-20"];
+const events = ["2025-04-21", "2025-04-28", "2025-05-05"];
 
 function updateCalendar() {
     const monthYear = document.getElementById("month-year");
