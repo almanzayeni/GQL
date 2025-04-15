@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const newComment = document.createElement("div");
             newComment.classList.add("user-comment");
             newComment.innerHTML = `
-                <h4>New User</h4>
+                <h4>iluvHealth</h4>
                 <p class="comment-blog-title">Blog: ${selectedBlog}</p>
                 <p class="comment-p">${commentText}</p>
                 <div class="comment-reaction">
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const replyDiv = document.createElement("div");
                 replyDiv.classList.add("user-reply");
                 replyDiv.innerHTML = `
-                    <h4>Your Reply</h4>
+                    <h4>iluvHealth</h4>
                     <p class="comment-p">${replyText}</p>
                 `;
 
