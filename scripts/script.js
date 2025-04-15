@@ -1,3 +1,13 @@
+//Hamburger Menu
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+});
+
 //Form requirements
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector('.question-form form');
