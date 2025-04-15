@@ -247,6 +247,41 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+//Adding blog from blog.html page
+document.addEventListener("DOMContentLoaded", function () {
+    const blogContainer = document.querySelector(".blog-cards-container");
+    const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+    blogs.forEach(blog => {
+        const card = document.createElement("div");
+        card.classList.add("blog-card");
+
+        card.innerHTML = `
+            <img src="${blog.imageUrl || 'images/light-bulb.png'}" alt="Blog Image">
+            <div class="blog-content">
+                <div class="blog-title">${blog.title}</div>
+                <div class="blog-description">${truncate(blog.content, 350)}</div>
+                <div class="blog-buttons">
+                    <button class="read-more">Read More</button>
+                    <button class="share-btn">Share</button>
+                </div>
+            </div>
+        `;
+
+        // Optional: add modal or alert for full content on "Read More"
+        card.querySelector(".read-more").addEventListener("click", () => {
+            alert(`Full Blog: ${blog.content}`);
+        });
+
+        blogContainer.appendChild(card);
+    });
+
+    function truncate(text, maxLength) {
+        return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+    }
+});
+
 //Search input
 document.getElementById("searchButton").addEventListener("click", function () {
     const query = document.getElementById("searchInput").value.toLowerCase();
