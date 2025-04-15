@@ -1,4 +1,4 @@
-//Post: Doesn't work like I want it to yet
+// Handle form submission
 document.getElementById('blogForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -32,7 +32,7 @@ function saveBlog(blog) {
     localStorage.setItem('blogs', JSON.stringify(blogs));
 }
 
-//Image preview
+// Image preview
 const imageInput = document.getElementById('image');
 const imagePreview = document.getElementById('imagePreview');
 

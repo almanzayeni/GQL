@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const newComment = document.createElement("div");
             newComment.classList.add("user-comment");
             newComment.innerHTML = `
-                <h4>New User</h4>
+                <h4>iluvHealth</h4>
                 <p class="comment-blog-title">Blog: ${selectedBlog}</p>
                 <p class="comment-p">${commentText}</p>
                 <div class="comment-reaction">
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const replyDiv = document.createElement("div");
                 replyDiv.classList.add("user-reply");
                 replyDiv.innerHTML = `
-                    <h4>Your Reply</h4>
+                    <h4>iluvHealth</h4>
                     <p class="comment-p">${replyText}</p>
                 `;
 
@@ -247,22 +247,61 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-//Search input
-document.getElementById("searchButton").addEventListener("click", function () {
-    const query = document.getElementById("searchInput").value.toLowerCase();
 
-    if (!query.trim()) {
+//Adding blog from blog.html page
+document.addEventListener("DOMContentLoaded", function () {
+    const blogContainer = document.querySelector(".blog-cards-container");
+    const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+    blogs.forEach(blog => {
+        const card = document.createElement("div");
+        card.classList.add("blog-card");
+
+        card.innerHTML = `
+            <img src="${blog.imageUrl || 'images/light-bulb.png'}" alt="Blog Image">
+            <div class="blog-content">
+                <div class="blog-title">${blog.title}</div>
+                <div class="blog-description">${truncate(blog.content, 350)}</div>
+                <div class="blog-buttons">
+                    <button class="read-more">Read More</button>
+                    <button class="share-btn">Share</button>
+                </div>
+            </div>
+        `;
+
+        // Optional: add modal or alert for full content on "Read More"
+        card.querySelector(".read-more").addEventListener("click", () => {
+            alert(`Full Blog: ${blog.content}`);
+        });
+
+        blogContainer.appendChild(card);
+    });
+
+    function truncate(text, maxLength) {
+        return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+    }
+});
+
+//Search input
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+
+function performSearch() {
+    const query = searchInput.value.toLowerCase().trim();
+
+    if (!query) {
         alert("Please enter a search term.");
         return;
     }
 
     const keywordMap = {
-        "tips.html": ["tip", "tips", "advice", "games", "activities", "video"],
+        "tips.html": ["tip", "tips", "advice", "games", "activities", "video", "quote", "playlist"],
         "classes.html": ["class", "classes", "event", "events", "date", "calendar", "register"],
-        "resources.html": ["service", "remedy", "remedies", "recipe", "lookup", "services near me"],
-        "help.html": ["help", "how", "when", "where", "question", "what", "assistance"],
+        "resources.html": ["service", "remedy", "remedies", "recipe", "lookup", "services near me", "zip", "health"],
+        "help.html": ["help", "how", "when", "where", "question", "what", "assistance", "faqs", "faq"],
         "discussions.html": ["discussion", "discussions", "blog", "comment", "comments", "read blog", "share"],
-        "contact.html": ["more help", "contact", "phone", "address", "hours"],
+        "contact.html": ["more help", "contact", "phone", "address", "hours", "location"],
+        "index.html": ["home", "index", "trending", "news", "doctor", "laugh", "learn", "welcome"],
         "signin.html": ["sign up", "sign in", "password", "log in"]
     };
 
@@ -276,7 +315,17 @@ document.getElementById("searchButton").addEventListener("click", function () {
     }
 
     alert("Sorry, no relevant page found for your search.");
+}
+
+searchButton.addEventListener("click", performSearch);
+
+searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault(); // Prevent form submission or default behavior
+        performSearch();
+    }
 });
+
 
 //Emoji clicking 
 document.querySelectorAll('.emoji-container p').forEach(emoji => {

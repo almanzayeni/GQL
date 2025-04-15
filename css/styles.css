@@ -1280,7 +1280,13 @@ input, select {
     padding: 20px;
     width: 100%;
 }
-
+.blog-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
 .blog-card {
     background-color: white;
     width: 95%;
