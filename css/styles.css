@@ -791,6 +791,7 @@ body {
     color: white;
     box-sizing: border-box; 
 }
+
 .video-box {
     display: flex;
     background: white;
@@ -799,15 +800,30 @@ body {
     margin-bottom: 15px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-.video-box video {
+
+.tips-video iframe {
     width: 150px;
     height: 100px;
     border-radius: 8px;
+    border: none;
 }
+
 .video-info {
     padding-left: 10px;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.video-info h4 {
+    margin: 0 0 5px;
+}
+
+.video-info p {
+    margin: 0 0 10px;
+}
+
 .share-btn {
     background: #4A4A4A;
     color: white;
@@ -816,7 +832,9 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+    align-self: start;
 }
+
 .share-btn:hover {
     background: #333;
 }
